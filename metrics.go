@@ -142,21 +142,21 @@ func newMetricsRegistry(config MetricsConfig) (*metrics, error) {
 	m.messagesSentCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "node",
-		Name:      "messages_sent_count",
+		Name:      "messages_sent_total",
 		Help:      "Number of messages sent by node to broker.",
 	}, []string{"type", "channel_namespace"})
 
 	m.messagesReceivedCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "node",
-		Name:      "messages_received_count",
+		Name:      "messages_received_total",
 		Help:      "Number of messages received from broker.",
 	}, []string{"type", "channel_namespace"})
 
 	m.actionCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "node",
-		Name:      "action_count",
+		Name:      "action_total",
 		Help:      "Number of various actions called.",
 	}, []string{"action", "channel_namespace"})
 
@@ -221,28 +221,28 @@ func newMetricsRegistry(config MetricsConfig) (*metrics, error) {
 	m.replyErrorCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "client",
-		Name:      "num_reply_errors",
+		Name:      "num_reply_errors_total",
 		Help:      "Number of errors in replies sent to clients.",
 	}, []string{"method", "code", "channel_namespace"})
 
 	m.serverUnsubscribeCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "client",
-		Name:      "num_server_unsubscribes",
+		Name:      "num_server_unsubscribes_total",
 		Help:      "Number of server initiated unsubscribes.",
 	}, []string{"code", "channel_namespace"})
 
 	m.serverDisconnectCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "client",
-		Name:      "num_server_disconnects",
+		Name:      "num_server_disconnects_total",
 		Help:      "Number of server initiated disconnects.",
 	}, []string{"code"})
 
 	m.recoverCount = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "client",
-		Name:      "recover",
+		Name:      "recover_total",
 		Help:      "Count of recover operations with success/fail resolution.",
 	}, []string{"recovered", "channel_namespace", "has_recovered_publications"})
 
@@ -287,28 +287,28 @@ func newMetricsRegistry(config MetricsConfig) (*metrics, error) {
 	m.transportMessagesSent = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "transport",
-		Name:      "messages_sent",
+		Name:      "messages_sent_total",
 		Help:      "Number of messages sent to client connections over specific transport.",
 	}, []string{"transport", "frame_type", "channel_namespace"})
 
 	m.transportMessagesSentSize = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "transport",
-		Name:      "messages_sent_size",
+		Name:      "messages_sent_size_total",
 		Help:      "MaxSize in bytes of messages sent to client connections over specific transport (uncompressed and does not include framing overhead).",
 	}, []string{"transport", "frame_type", "channel_namespace"})
 
 	m.transportMessagesReceived = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "transport",
-		Name:      "messages_received",
+		Name:      "messages_received_total",
 		Help:      "Number of messages received from client connections over specific transport.",
 	}, []string{"transport", "frame_type", "channel_namespace"})
 
 	m.transportMessagesReceivedSize = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "transport",
-		Name:      "messages_received_size",
+		Name:      "messages_received_size_total",
 		Help:      "MaxSize in bytes of messages received from client connections over specific transport (uncompressed and does not include framing overhead).",
 	}, []string{"transport", "frame_type", "channel_namespace"})
 
@@ -334,14 +334,14 @@ func newMetricsRegistry(config MetricsConfig) (*metrics, error) {
 	m.redisBrokerPubSubErrors = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "broker",
-		Name:      "redis_pub_sub_errors",
+		Name:      "redis_pub_sub_errors_total",
 		Help:      "Number of times there was an error in Redis PUB/SUB connection.",
 	}, []string{"broker_name", "error"})
 
 	m.redisBrokerPubSubDroppedMessages = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Namespace: metricsNamespace,
 		Subsystem: "broker",
-		Name:      "redis_pub_sub_dropped_messages",
+		Name:      "redis_pub_sub_dropped_messages_total",
 		Help:      "Number of dropped messages on application level in Redis PUB/SUB.",
 	}, []string{"broker_name", "channel_type"})
 
